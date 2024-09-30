@@ -13,6 +13,8 @@ sig Aluno extends Pessoa{}
 
 sig Disciplina {
     	nome: one String
+     	horario1 = one Horario
+      	horario2 = one Horario
 }
 
 sig Laboratorio {
@@ -55,7 +57,7 @@ fact ReservasDuasHoras {
 fact DoisHorariosPorDisciplina {
 	all p: Professor, d: Disciplina | 
         	d in p.disciplinas => 
-			#r: ((Reserva | r.professor = p and r.disciplina = d)) = 2
+			#r: Reserva | r.professor = p and r.disciplina = d = 2
 }
 
 
